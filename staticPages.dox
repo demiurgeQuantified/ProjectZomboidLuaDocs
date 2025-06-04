@@ -1,0 +1,6 @@
+/** \mainpage Welcome
+  Welcome to the unofficial Project Zomboid Lua docs! This website is very new and heavily WIP. If you encounter any problems or have any feature requests, feel free to [open an issue](https://github.com/demiurgeQuantified/ProjectZomboidLuaDocs/issues/new). 
+*/
+/** \page Events
+  Events documentation is planned to move here in the future. For now, you can view the list of events [here](https://github.com/demiurgeQuantified/PZEventDoc/blob/develop/docs/Events.md).
+*/
