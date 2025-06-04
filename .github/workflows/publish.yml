@@ -1,0 +1,72 @@
+name: Build docs
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout self
+        uses: actions/checkout@v4.2.2
+        with:
+          path: ProjectZomboidLuaDocs
+  
+      - name: Checkout rosetta_doxygen
+        uses: actions/checkout@v4.2.2
+        with:
+          repository: demiurgeQuantified/rosetta_doxygen
+          path: rosetta_doxygen
+
+      - name: Configure CMake
+        run: cmake -B rosetta_doxygen/build -S rosetta_doxygen
+      
+      - name: Build rosetta_doxygen
+        run: cmake --build rosetta_doxygen/build
+
+      - name: Copy rosetta_doxygen to doxygen path
+        run: cp rosetta_doxygen/build/rosetta_doxygen ProjectZomboidLuaDocs/
+
+      - name: Checkout pz-lua-stubdata
+        uses: actions/checkout@v4.2.2
+        with:
+          repository: omarkmu/pz-lua-stubdata
+          path: ./pz-lua-stubdata
+      
+      - name: Copy YAML files to Doxygen root
+        run: cp -R pz-lua-stubdata/yml/* ProjectZomboidLuaDocs
+
+      - name: Download Doxygen
+        uses: robinraju/release-downloader@v1.12
+        id: download-doxygen
+        with:
+          repository: doxygen/doxygen
+          fileName: "*.linux.bin.tar.gz"
+          tag: Release_1_14_0
+
+      - name: Run Doxygen
+        run: |
+          mkdir doxygen
+          tar -xzf ${{ fromJson(steps.download-doxygen.outputs.downloaded_files)[0] }} -C doxygen
+          cd ProjectZomboidLuaDocs
+          ../doxygen/doxygen-1.14.0/bin/doxygen PZLuaDocs
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          path: ProjectZomboidLuaDocs/html
+
+  deploy-docs:
+    needs: build-docs
+
+    permissions:
+      pages: write
+      id-token: write
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to pages
+        uses: actions/deploy-pages@v4
