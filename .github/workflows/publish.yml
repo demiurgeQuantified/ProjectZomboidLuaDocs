@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-docs:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout self
@@ -59,8 +59,8 @@ jobs:
         with:
           path: ProjectZomboidLuaDocs/html
 
-  deploy-docs:
-    needs: build-docs
+  deploy:
+    needs: build
 
     permissions:
       pages: write
