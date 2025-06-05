@@ -1,9 +1,9 @@
-/** \mainpage Welcome
+/** @mainpage Welcome
   Welcome to the unofficial Project Zomboid Lua docs! This website is very new and heavily WIP. If you encounter any problems or have any feature requests, feel free to [open an issue](https://github.com/demiurgeQuantified/ProjectZomboidLuaDocs/issues/new).
 
   Please keep in mind that because Lua is a dynamically typed language with no language level concept of classes whatsoever, the definitions on this site heavily rely on type inference. There may be situations where the inferred types are incorrect, or no type is inferred at all (`unknown`).
 */
 
-/** \page JavaDocs
+/** @page JavaDocs
   The documentation on this site goes hand-in-hand with the JavaDocs. The majority of the game's engine is implemented in Java. Definitions of the Java classes referenced in this doc can be found in the [unofficial JavaDocs](https://demiurgequantified.github.io/ProjectZomboidJavaDocs/).
 */
