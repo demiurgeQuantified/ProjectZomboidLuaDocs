@@ -1,0 +1,5 @@
+/** @namespace Umbrella
+  @brief Types defined by Umbrella.
+
+  These types do not use the game's Lua class system, but are still created and used. Because of this, they have no official name. Type information for them is written manually by contributors.
+*/
