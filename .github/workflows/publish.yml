@@ -1,4 +1,4 @@
-name: Build docs
+name: Build
 
 on:
   push:
@@ -38,6 +38,23 @@ jobs:
       
       - name: Copy YAML files to Doxygen root
         run: cp -R pz-lua-stubdata/yml/* ProjectZomboidLuaDocs
+
+      - name: Checkout PZEventDoc
+        uses: actions/checkout@v4.2.2
+        with:
+          repository: demiurgeQuantified/PZEventDoc
+          path: PZEventDoc
+
+      - name: Setup Python
+        uses: actions/setup-python@v4.6.1
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
+      - name: Create Events.md
+        run: |
+          pip install -r PZEventDoc/requirements.txt
+          python -O PZEventDoc/main.py 'PZEventDoc/data.json' 'ProjectZomboidLuaDocs/Events.md'
 
       - name: Download Doxygen
         uses: robinraju/release-downloader@v1.12
