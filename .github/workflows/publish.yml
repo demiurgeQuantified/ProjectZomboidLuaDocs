@@ -51,10 +51,12 @@ jobs:
           python-version: '3.13'
           cache: 'pip'
 
-      - name: Create Events.md
+      - name: Run PZEventDoc
         run: |
           pip install -r PZEventDoc/requirements.txt
-          python -O PZEventDoc/main.py 'PZEventDoc/data.json' 'ProjectZomboidLuaDocs/Events.md'
+          python -O PZEventDoc/main.py --events 'PZEventDoc/data.json' 'ProjectZomboidLuaDocs/Events.md'
+          python -O PZEventDoc/main.py --hooks 'PZEventDoc/data.json' 'ProjectZomboidLuaDocs/Hooks.md'
+          python -O PZEventDoc/main.py --callbacks 'PZEventDoc/data.json' 'ProjectZomboidLuaDocs/Callbacks.md'
 
       - name: Download Doxygen
         uses: robinraju/release-downloader@v1.12
