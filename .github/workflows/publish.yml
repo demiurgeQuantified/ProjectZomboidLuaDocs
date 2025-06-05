@@ -52,7 +52,7 @@ jobs:
           mkdir doxygen
           tar -xzf ${{ fromJson(steps.download-doxygen.outputs.downloaded_files)[0] }} -C doxygen
           cd ProjectZomboidLuaDocs
-          ../doxygen/doxygen-1.14.0/bin/doxygen PZLuaDocs
+          ../doxygen/doxygen-1.14.0/bin/doxygen
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3.0.1
