@@ -1,5 +1,7 @@
 /** \mainpage Welcome
-  Welcome to the unofficial Project Zomboid Lua docs! This website is very new and heavily WIP. If you encounter any problems or have any feature requests, feel free to [open an issue](https://github.com/demiurgeQuantified/ProjectZomboidLuaDocs/issues/new). 
+  Welcome to the unofficial Project Zomboid Lua docs! This website is very new and heavily WIP. If you encounter any problems or have any feature requests, feel free to [open an issue](https://github.com/demiurgeQuantified/ProjectZomboidLuaDocs/issues/new).
+
+  Please keep in mind that because Lua is a dynamically typed language with no language level concept of classes whatsoever, the definitions on this site heavily rely on type inference. There may be situations where the inferred types are incorrect, or no type is inferred at all (`unknown`).
 */
 
 /** \page JavaDocs
