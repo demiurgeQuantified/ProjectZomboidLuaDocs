@@ -45,6 +45,12 @@ jobs:
           repository: demiurgeQuantified/PZEventDoc
           path: PZEventDoc
 
+      - name: Checkout pz-rosetta-source
+        uses: actions/checkout@v4.2.2
+        with:
+          repository: demiurgeQuantified/pz-rosetta-source
+          path: pz-rosetta-source
+
       - name: Setup Python
         uses: actions/setup-python@v5.6.0
         with:
@@ -54,9 +60,9 @@ jobs:
       - name: Run PZEventDoc
         run: |
           pip install -r PZEventDoc/requirements.txt
-          python -O PZEventDoc/main.py --events 'PZEventDoc/data.json' 'ProjectZomboidLuaDocs/Events.md'
-          python -O PZEventDoc/main.py --hooks 'PZEventDoc/data.json' 'ProjectZomboidLuaDocs/Hooks.md'
-          python -O PZEventDoc/main.py --callbacks 'PZEventDoc/data.json' 'ProjectZomboidLuaDocs/Callbacks.md'
+          python -O PZEventDoc/main.py --events 'pz-rosetta-source/rosetta/events.yml' 'ProjectZomboidLuaDocs/Events.md'
+          python -O PZEventDoc/main.py --hooks 'pz-rosetta-source/rosetta/hooks.yml' 'ProjectZomboidLuaDocs/Hooks.md'
+          python -O PZEventDoc/main.py --callbacks 'pz-rosetta-source/rosetta/callbacks.yml' 'ProjectZomboidLuaDocs/Callbacks.md'
 
       - name: Download Doxygen
         uses: robinraju/release-downloader@v1.12
